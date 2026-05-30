@@ -1,0 +1,432 @@
+You are a **senior AI researcher and expert PyTorch engineer** specializing in **Diffusion Models, Image Steganography, Lightweight Deep Learning, and Computer Vision Research**.
+
+Your task is to generate a **COMPLETE, FULLY RUNNABLE, RESEARCH-GRADE IMPLEMENTATION IN A SINGLE RESPONSE**.
+
+IMPORTANT OUTPUT RULES:
+
+1. Generate the **ENTIRE codebase in ONE GO**.
+2. DO NOT stop midway.
+3. DO NOT ask for approval before continuing.
+4. DO NOT split files into multiple responses.
+5. DO NOT say:
+
+   * “I will continue”
+   * “Next file”
+   * “To be implemented”
+   * “Placeholder”
+   * “Due to length limitations”
+   * “This is left for you”
+   * “Pseudo code”
+6. Provide **FULL IMPLEMENTATION FOR EVERY FILE**.
+7. If response becomes long, continue automatically within the same response.
+8. Do NOT overclaim performance or say things like:
+
+   * “guaranteed best results”
+   * “100% accuracy”
+   * “100% overfitting prevention”
+   * “state-of-the-art”
+
+Instead, provide **realistic research assumptions and limitations**.
+
+---
+
+# RESEARCH OBJECTIVE
+
+Develop a **novel lightweight diffusion-based image steganography model**.
+
+The model must follow this principle:
+
+> Secret information should be hidden through the **denoising process of a diffusion model**, NOT through direct pixel modification.
+
+Traditional steganography:
+
+Cover + Secret → direct embedding → Stego
+
+Required approach:
+
+Cover + Secret → lightweight diffusion denoising → progressive secret injection during denoising → Stego image
+
+Then:
+
+Stego → secret recovery decoder → reconstructed secret image
+
+The goal is:
+
+> Hide information in the **denoising trajectory** rather than directly changing pixels.
+
+---
+
+# RESEARCH CONSTRAINTS
+
+The architecture must be:
+
+* lightweight
+* memory efficient
+* trainable on a single GPU
+* suitable for student/research experiments
+* modular
+* reproducible
+
+Target:
+
+* preferably <2M parameters
+* maximum 5M parameters
+
+Avoid:
+
+* heavy transformers
+* Stable Diffusion
+* latent diffusion
+* huge U-Nets
+* computationally expensive architectures
+
+---
+
+# NOVELTY REQUIREMENT
+
+DO NOT COPY existing methods.
+
+Do NOT reproduce:
+
+* DDPM Steganography
+* Stable Diffusion Steganography
+* StegaStamp
+* HiDDeN
+* RivaGAN
+* Existing GitHub repositories
+* Published architectures
+
+You may use diffusion principles only.
+
+Design a **novel lightweight architecture** suitable for experimentation.
+
+You may include lightweight multi-scale feature extraction internally if useful, but the **main contribution must remain diffusion-based denoising steganography**.
+
+---
+
+# MODEL DESIGN REQUIREMENTS
+
+Inputs:
+
+1. Cover image (256×256×3)
+2. Secret image (256×256×3)
+
+Outputs:
+
+1. Stego image
+2. Reconstructed secret image
+
+The model must contain:
+
+## 1. Secret Encoder
+
+Purpose:
+Encode secret image into compact latent representation.
+
+Requirements:
+
+* lightweight CNN
+* residual learning
+* efficient feature compression
+
+---
+
+## 2. Diffusion Denoising Embedding Module
+
+This is the PRIMARY CONTRIBUTION.
+
+Instead of pixel embedding:
+
+Secret information must be progressively embedded during denoising.
+
+Suggested denoising behavior:
+
+Early denoising:
+→ coarse information embedding
+
+Middle denoising:
+→ structural refinement
+
+Late denoising:
+→ fine detail preservation
+
+Requirements:
+
+* lightweight diffusion
+* only 8–20 diffusion steps
+* custom noise scheduler
+* residual blocks
+* skip connections
+* computational efficiency
+
+---
+
+## 3. Secret Recovery Decoder
+
+Recover secret image from stego image.
+
+Requirements:
+
+* stable reconstruction
+* lightweight decoder
+* preserve structural information
+
+---
+
+# TRAINING STRATEGY
+
+Use:
+
+### MULTIPLE IMAGE PAIRS ONLY
+
+DO NOT implement single-pair training.
+
+Reason:
+
+Single-pair training risks memorization and weak generalization.
+
+Training dataset:
+
+* Tiny ImageNet
+  OR
+* custom image folder
+
+Image size:
+
+256×256 RGB
+
+Automatic:
+
+* image pairing
+* train-validation split
+
+Split:
+
+80% train
+
+20% validation
+
+Validation must use unseen pairs.
+
+---
+
+# TRAINING SETTINGS
+
+Train for:
+
+1000 epochs
+
+IMPORTANT:
+
+Record metrics every:
+
+100 epochs
+
+Only at:
+
+100, 200, 300, ..., 1000
+
+At every checkpoint:
+
+Save:
+
+1. model weights
+2. optimizer state
+3. stego image outputs
+4. reconstructed secret outputs
+5. comparison grids
+6. CSV logs
+7. JSON logs
+8. plots
+
+Implement:
+
+* mixed precision training
+* gradient clipping
+* LR scheduler
+* checkpoint resume
+* reproducibility seed
+* GPU/CPU support
+
+---
+
+# LOSS FUNCTIONS
+
+Implement weighted hybrid loss:
+
+1. Cover reconstruction loss
+
+(stego ≈ cover)
+
+2. Secret reconstruction loss
+
+(secret_recovered ≈ secret)
+
+3. SSIM loss
+
+4. Perceptual loss
+
+5. Diffusion consistency loss
+
+6. Edge preservation loss
+
+Provide:
+
+* weighted equation
+* coefficient explanation
+* realistic reasoning
+
+---
+
+# METRICS REQUIRED
+
+## Stego Image Quality
+
+* PSNR
+* SSIM
+* MSE
+
+## Secret Recovery Quality
+
+* Secret PSNR
+* Secret SSIM
+* LPIPS (lightweight optional)
+
+## Training Analysis
+
+* train loss
+* validation loss
+
+---
+
+# PAYLOAD CAPACITY ANALYSIS
+
+Implement:
+
+Bits Per Pixel (BPP)
+
+Automatically calculate and log.
+
+Include:
+
+trade-off analysis between:
+
+* BPP
+* image quality
+* recovery quality
+
+Save:
+
+* CSV
+* JSON
+* plots
+
+---
+
+# OVERFITTING & CONVERGENCE ANALYSIS
+
+Automatically detect:
+
+### Overfitting
+
+Training improves but validation worsens.
+
+### Underfitting
+
+Both remain weak.
+
+### Convergence Point
+
+Automatically estimate best epoch.
+
+Generate convergence report.
+
+---
+
+# VISUALIZATION
+
+Automatically generate:
+
+1. Loss curve
+2. PSNR curve
+3. SSIM curve
+4. Train vs validation curve
+5. BPP vs quality plots
+6. Convergence plots
+
+Save all as PNG.
+
+---
+
+# REQUIRED PROJECT STRUCTURE
+
+Generate COMPLETE runnable code for:
+
+project/
+
+│── config.py
+│── dataset.py
+│── model.py
+│── diffusion.py
+│── losses.py
+│── metrics.py
+│── train.py
+│── validate.py
+│── utils.py
+│── visualization.py
+│── requirements.txt
+│── README.md
+
+---
+
+# CODE QUALITY REQUIREMENTS
+
+The implementation MUST:
+
+* be fully runnable
+* production quality
+* modular
+* documented
+* type hinted
+* memory efficient
+* reproducible
+
+NO:
+
+* placeholders
+* pseudocode
+* incomplete functions
+* TODO sections
+* omitted logic
+
+Everything must be implemented.
+
+---
+
+# README REQUIREMENTS
+
+Include:
+
+1. architecture explanation
+2. novelty explanation
+3. denoising-based secret embedding explanation
+4. dataset preparation
+5. training guide
+6. command examples
+7. expected outputs
+8. troubleshooting
+9. BPP explanation
+10. convergence analysis explanation
+
+---
+
+# FINAL OUTPUT FORMAT
+
+Return:
+
+1. Full folder structure
+2. Full code for every file
+3. requirements.txt
+4. README.md
+
+Generate EVERYTHING in ONE RESPONSE without stopping.
