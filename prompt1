@@ -430,3 +430,44 @@ Return:
 4. README.md
 
 Generate EVERYTHING in ONE RESPONSE without stopping.
+
+
+
+Part 1
+Imports
+Configuration
+Tiny ImageNet Pair Dataset
+Train/Val/Test Split
+DataLoaders
+Part 2
+ConvBlock
+CoverEncoder
+SecretEncoder
+SecretCompression
+TimeEmbedding
+TemporalSecretInjector
+Part 3
+Tiny Denoising Backbone
+Trajectory Aggregator
+Stego Decoder
+Secret Decoder
+Part 4
+Complete DSDSNetLite model
+Forward pass
+Tensor shape verification
+Part 5
+Loss functions
+PSNR
+SSIM
+MSE
+BPP
+Part 6
+Training Loop
+Validation Loop
+Checkpoint Saving
+Best Model Saving
+Part 7
+Testing
+Robustness Evaluation
+Visualization
+Final Metrics
